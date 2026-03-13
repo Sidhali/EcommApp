@@ -1,0 +1,14 @@
+export const categoryLabels = {
+  "mobile-accessories": "Mobile",
+  "kitchen-accessories": "Kitchen",
+  "home-decoration": "Decor",
+  "sports-accessories": "Sports",
+  "mens-shirts": "Shirts",
+  "mens-shoes": "Shoes",
+  "mens-watches": "Watches",
+  "womens-dresses": "Dresses",
+  "womens-shoes": "Shoes",
+  "womens-watches": "Watches",
+  "womens-jewellery": "Jewellery",
+  "womens-bags": "Bags",
+};
