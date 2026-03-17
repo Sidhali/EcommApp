@@ -14,8 +14,6 @@ import { closeLoginModal, openLoginModal } from "../features/ui/uiSlice";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
-import { loginAPI } from "../services/apiService";
-import { loginSuccess } from "../features/auth/authSlice";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -25,6 +23,7 @@ import { searchProducts } from "../features/search/searchThunk";
 import { clearSearchResults } from "../features/search/searchSlice";
 import { debounce } from "../utility/debounce";
 import { useState } from "react";
+import { clearAuthError } from "../features/auth/authSlice";
 
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
@@ -32,6 +31,7 @@ import { logout } from "../features/auth/authSlice";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { useSelector } from "react-redux";
+import { loginUser } from "../features/auth/authThunk";
 
 // import React, { useState } from "react";
 
@@ -62,7 +62,8 @@ function Navbar() {
 
   const wishlistCount = wishlistItems.length;
 
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const authData = useSelector((state) => state.auth);
+  const isLoggedIn = authData.isLoggedIn;
 
   const results = useSelector((state) => state.search.results);
 
@@ -95,7 +96,7 @@ function Navbar() {
 
   return (
     <Box>
-      <AppBar sx={{ backgroundColor: "#0d3463fd" }} position="static">
+      <AppBar sx={{ backgroundColor: "#0a73b5fd" }} position="static">
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box
             onClick={() => navigate("/")}
@@ -210,11 +211,20 @@ function Navbar() {
               <Box>
                 <Button
                   color="inherit"
-                  onClick={() => dispatch(openLoginModal())}
+                  onClick={() => {
+                    dispatch(clearAuthError());
+                    dispatch(openLoginModal());
+                  }}
                 >
                   Login
                 </Button>
-                <Modal open={open} onClose={() => dispatch(closeLoginModal())}>
+                <Modal
+                  open={open}
+                  onClose={() => {
+                    dispatch(clearAuthError());
+                    dispatch(closeLoginModal());
+                  }}
+                >
                   <Box
                     sx={{
                       position: "absolute",
@@ -244,27 +254,13 @@ function Navbar() {
 
                     <Formik
                       initialValues={initialValues}
+                      validateOnMount={false}
+                      validateOnChange={false}
                       validationSchema={validationSchema}
                       onSubmit={async (values) => {
-                        // console.log("FORM VALUES:", values);
                         try {
-                          // console.log("FORM VALUES:", values);
-
-                          const data = await loginAPI(values);
-
-                          // console.log("login response:", data);
-                          // console.log("TOKEN:", data.accessToken);
-
-                          localStorage.setItem("accessToken", data.accessToken);
-
-                          dispatch(loginSuccess());
-
-                          // console.log(
-                          //   "Saved token:",
-                          //   localStorage.getItem("accessToken"),
-                          // );
-
-                          dispatch(closeLoginModal());
+                          await dispatch(loginUser(values));
+                          navigate("/");
                         } catch (error) {
                           console.error("Login failed:", error);
                         }
@@ -304,7 +300,9 @@ function Navbar() {
                             helperText={touched.password && errors.password}
                             sx={{ backgroundColor: "#f8f5f8", borderRadius: 3 }}
                           />
-
+                          <Typography sx={{ color: "red" }}>
+                            {authData.error && authData.error.message}
+                          </Typography>
                           <Button
                             fullWidth
                             variant="contained"

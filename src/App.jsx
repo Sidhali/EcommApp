@@ -1,6 +1,3 @@
-import React from "react";
-import LoginPage from "./pages/LoginPage";
-import LandingPage from "./pages/LandingPage";
 import { routes } from "./routeConfig/routesConfig";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";

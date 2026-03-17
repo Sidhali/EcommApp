@@ -48,7 +48,7 @@ function CategoryBar() {
 
         py: 2,
         overflowX: "auto",
-        backgroundColor: "#d0f4fc",
+        backgroundColor: "#d0ecfc",
       }}
     >
       <Box
@@ -73,9 +73,9 @@ function CategoryBar() {
             display: "flex",
 
             flexDirection: "column",
-            color: selectedCategory === category ? "#038480" : "#132886",
+            color: selectedCategory === category ? "#035384" : "#014a60",
             borderBottom:
-              selectedCategory === category ? "3px solid #128987" : "#802384",
+              selectedCategory === category ? "3px solid #125389" : "#802384",
             pb: 1,
             transition: "0.2s",
             alignItems: "center",

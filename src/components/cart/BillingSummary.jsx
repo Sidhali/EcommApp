@@ -95,7 +95,7 @@ export default function BillingSummary({ setActiveStep }) {
         <Button
           fullWidth
           variant="contained"
-          sx={{ mt: 3 }}
+          sx={{ mt: 3, backgroundColor: "#053072" }}
           onClick={() => {
             handleProceedToPayment();
           }}

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Container,
-  Typography,
-  IconButton,
-  Box,
-  Pagination,
-  Stack,
-} from "@mui/material";
+import { Grid, Typography, Box, Pagination, Stack } from "@mui/material";
 import ProductsComponent from "./ProductsComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "../features/products/productsSlice";

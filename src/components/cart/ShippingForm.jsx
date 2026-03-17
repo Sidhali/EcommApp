@@ -98,8 +98,8 @@ export default function ShippingForm({ setActiveStep }) {
                 type="submit"
                 variant="contained"
                 sx={{
-                  backgroundColor: "#228441",
-                  marginLeft: 12,
+                  backgroundColor: "#10abda",
+                  marginLeft: 15,
                   marginTop: 3,
                   borderRadius: 3,
                 }}
