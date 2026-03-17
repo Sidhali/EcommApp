@@ -85,7 +85,7 @@ function ProductsComponent({ item }) {
           display: "flex",
           margin: "0 auto",
           flexDirection: "column",
-          backgroundColor: "#b8e9fc",
+          backgroundColor: "#c4e8fb",
           position: "relative",
         }}
       >
@@ -151,7 +151,7 @@ function ProductsComponent({ item }) {
           >
             {quantity === 0 ? (
               <Button
-                sx={{ marginLeft: 10, backgroundColor: "#385a91" }}
+                sx={{ marginLeft: 8 , backgroundColor: "#1468d0" }}
                 variant="contained"
                 onClick={() => {
                   dispatch(

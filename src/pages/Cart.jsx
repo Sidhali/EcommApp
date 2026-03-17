@@ -1,5 +1,5 @@
 import { Box, Stepper, Step, StepLabel } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CartSection from "../components/cart/CartSection.jsx";
 import ShippingForm from "../components/cart/ShippingForm";
 import PaymentForm from "../components/cart/PaymentForm";
@@ -7,16 +7,15 @@ import PaymentForm from "../components/cart/PaymentForm";
 const steps = ["Cart", "Shipping Address", "Payment"];
 
 export default function CartPage() {
-  const [activeStep, setActiveStep] = useState(0);
-
-  useEffect(() => {
+  const [activeStep, setActiveStep] = useState(() => {
     const savedStep = localStorage.getItem("checkoutStep");
 
     if (savedStep) {
-      setActiveStep(Number(savedStep));
       localStorage.removeItem("checkoutStep");
+      return Number(savedStep);
     }
-  }, []);
+    return 0;
+  });
 
   return (
     <Box
@@ -24,7 +23,7 @@ export default function CartPage() {
         display: "flex",
         justifyContent: "center",
         width: "100%",
-        backgroundColor: "#fef8da",
+        backgroundColor: "#daf4fe",
         minHeight: "100vh",
       }}
     >

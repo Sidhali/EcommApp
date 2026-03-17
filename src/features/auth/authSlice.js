@@ -18,9 +18,15 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       localStorage.removeItem("accessToken");
     },
-    loginSuccess: (state) => {
-      state.isLoggedIn = true;
+    clearAuthError: (state) => {
+      state.error = null;
     },
+    // loginSuccess: (state) => {
+    //   state.isLoggedIn = true;
+    // },
+    // loginFailure: (state, action) => {
+    //   state.error = action.payload;
+    // },
   },
 
   extraReducers: (builder) => {
@@ -41,5 +47,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, loginSuccess } = authSlice.actions;
+export const { logout, loginSuccess, loginFailure, clearAuthError } =
+  authSlice.actions;
 export default authSlice.reducer;

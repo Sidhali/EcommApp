@@ -68,13 +68,13 @@ const CategoryDropdown = () => {
           textTransform: "none",
           fontWeight: 500,
           borderRadius: 2,
-          backgroundColor: "#285390",
+          backgroundColor: "#0574b5",
           px: 2,
-          color: "#fff953",
+          color: "#fbf2be",
           borderColor: "#234f89",
           "&:hover": {
             borderColor: "#488951",
-            backgroundColor: "#38897d",
+            backgroundColor: "#0a55a0",
           },
         }}
       >
@@ -119,7 +119,7 @@ const CategoryDropdown = () => {
                 sx={{
                   textTransform: "capitalize",
                   "&:hover": {
-                    backgroundColor: "#fcf6be",
+                    backgroundColor: "#bed8fc",
                   },
                 }}
               >
